@@ -1,0 +1,28 @@
+.hero {
+  position: absolute;
+  background-image: url('../images/hero.png');
+  background-repeat: no-repeat;
+  animation: hero-animation 1s steps(4) infinite;
+  z-index: 1;
+
+  width: var(--tile-size);
+  height: calc(var(--tile-size) + var(--helmet-offset));
+
+  /* hack valor negativo */
+  transform: translateY(calc(-1 * var(--helmet-offset)));
+  background-position: 0 calc(-1 * var(--tile-size) + var(--helmet-offset));
+}
+
+@keyframes hero-animation {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -192px;
+  }
+}
+
+.hero1 {
+  top: 804px;
+  left: 48px;
+}

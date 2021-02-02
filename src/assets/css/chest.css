@@ -1,0 +1,28 @@
+.chest {
+  position: absolute;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background-image: url('../images/chest.png');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  animation: chest-animation 1s steps(2) forwards;
+}
+
+@keyframes chest-animation {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -96px;
+  }
+}
+
+.chest1 {
+  top: 672px;
+  left: 816px;
+}
+
+.chest2 {
+  top: 240px;
+  left: 144px;
+}

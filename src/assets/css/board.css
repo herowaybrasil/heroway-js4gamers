@@ -1,0 +1,35 @@
+.board {
+  position: relative;
+  width: var(--game-size);
+  height: var(--game-size);
+}
+
+.board-img {
+  width: var(--game-size);
+  height: var(--game-size);
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.steps {
+  padding-right: 10px;
+  border-right: 2px solid white;
+  color: white;
+  font-size: 25px;
+}
+
+.reset {
+  color: white;
+  font-size: 25px;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,43 @@
+.trap {
+  position: absolute;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background-image: url('../images/trap.png');
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  animation: trap-animation 1s steps(8) infinite;
+}
+
+@keyframes trap-animation {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -384px;
+  }
+}
+
+.trap1 {
+  top: 672px;
+  left: 336px;
+}
+
+.trap2 {
+  top: 720px;
+  left: 624px;
+}
+
+.trap3 {
+  top: 576px;
+  left: 768px;
+}
+
+.trap4 {
+  top: 384px;
+  left: 384px;
+}
+
+.trap5 {
+  top: 288px;
+  left: 480px;
+}

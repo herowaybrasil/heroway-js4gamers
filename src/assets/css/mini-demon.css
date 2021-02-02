@@ -1,0 +1,33 @@
+.mini-demon {
+  position: absolute;
+  background-image: url('../images/mini-demon.png');
+  background-repeat: no-repeat;
+  animation: mini-demon-animation 1s steps(4) infinite;
+  z-index: 1;
+
+  width: var(--tile-size);
+  height: calc(var(--tile-size) + var(--helmet-offset));
+
+  /* hack valor negativo */
+  transform: translateY(calc(-1 * var(--helmet-offset)));
+  background-position: 0 calc(-1 * var(--tile-size) + var(--helmet-offset));
+}
+
+@keyframes mini-demon-animation {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: -192px;
+  }
+}
+
+.mini-demon1 {
+  top: 612px;
+  left: 336px;
+}
+
+.mini-demon2 {
+  top: 180px;
+  left: 384px;
+}
