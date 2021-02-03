@@ -23,15 +23,15 @@ function createBoard() {
   const boardElements = [];
 
   function createElement(options) {
-    const { className, top, left } = options;
+    const { item, top, left } = options;
 
     const htmlElement = document.createElement("div");
-    htmlElement.className = className;
+    htmlElement.className = item;
     htmlElement.style.top = `${top}px`;
     htmlElement.style.left = `${left}px`;
     htmlBoardElement.appendChild(htmlElement);
   
-    boardElements.push({ className, currentPosition: { top, left } });
+    boardElements.push({ item, currentPosition: { top, left } });
     const boardElement = boardElements[boardElements.length - 1];
 
     function getNewPosition(buttonPressed, position) {
@@ -68,7 +68,7 @@ function createBoard() {
         position.left <= 864 &&
         position.top >= 96 &&
         position.top <= 816 &&
-        conflict?.className !== "forniture"
+        conflict?.item !== "forniture"
       );
     }
   
@@ -80,21 +80,21 @@ function createBoard() {
         }, 25);
       }
 
-      if (conflict && conflict.className !== "forniture") {
-        if (boardElement.className === "hero") {
+      if (conflict && conflict.item !== "forniture") {
+        if (boardElement.item === "hero") {
           if (
-            conflict.className === "mini-demon" ||
-            conflict.className === "trap"
+            conflict.item === "mini-demon" ||
+            conflict.item === "trap"
           ) {
             finishGame("You Died");
           }
   
-          if (conflict.className === "chest") {
+          if (conflict.item === "chest") {
             finishGame("You Win");
           }
         }
   
-        if (boardElement.className === "mini-demon" && conflict.className === "hero") {
+        if (boardElement.item === "mini-demon" && conflict.item === "hero") {
           finishGame("You Died");
         }
       }
@@ -117,10 +117,14 @@ function createBoard() {
     return { move };
   }
 
+  function createItem(options) {
+    createElement(options);
+  }
+
   function createHero(options) {
     const { top, left } = options;
     const gameElement = createElement({
-      className: "hero",
+      item: "hero",
       top: top,
       left: left,
     });
@@ -133,7 +137,7 @@ function createBoard() {
   function createEnemy(options) {
     const { top, left } = options;
     const gameElement = createElement({
-      className: "mini-demon",
+      item: "mini-demon",
       top: top,
       left: left,
     });
@@ -144,21 +148,65 @@ function createBoard() {
       const randomDirection = directionsValue[randomIndex];
   
       gameElement.move(randomDirection);
-    }, 2000);
+    }, 500);
   }
 
-  return { createElement, createHero, createEnemy };
+  return { createItem, createHero, createEnemy };
 }
 
 const board = createBoard();
 
-board.createElement({ className: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 3 });
-board.createElement({ className: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 8 });
-board.createElement({ className: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 16 });
-board.createElement({ className: "forniture", top: TILE_SIZE * 17, left: TILE_SIZE * 2 });
+board.createItem({ item: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 3 });
+board.createItem({ item: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 8 });
+board.createItem({ item: "forniture", top: TILE_SIZE * 2, left: TILE_SIZE * 16 });
+board.createItem({ item: "forniture", top: TILE_SIZE * 17, left: TILE_SIZE * 2 });
 
-board.createElement({ className: "trap", top: TILE_SIZE * 6, left: TILE_SIZE * 2 });
-board.createElement({ className: "chest", top: TILE_SIZE * 8, left: TILE_SIZE * 2 });
+// for (let index = 0; index < 10; index++) {
+//   const topRandom = Math.floor(Math.random() * 16) + 2;
+//   const leftRandom = Math.floor(Math.random() * 16) + 2;
+  
+//   console.log(`board.createItem({ item: "trap", top: ${TILE_SIZE * topRandom}, left: ${TILE_SIZE * leftRandom} });`);
+//   board.createItem({ item: "trap", top: TILE_SIZE * topRandom, left: TILE_SIZE * leftRandom });
+// }
 
+// for (let index = 0; index < 20; index++) {
+//   const topRandom = Math.floor(Math.random() * 16) + 2;
+//   const leftRandom = Math.floor(Math.random() * 16) + 2;
+  
+//   console.log(`board.createEnemy({ top: ${TILE_SIZE * topRandom}, left: ${TILE_SIZE * leftRandom} });`);
+//   board.createEnemy({ top: TILE_SIZE * topRandom, left: TILE_SIZE * leftRandom });
+// }
+
+board.createItem({ item: "trap", top: 672, left: 96 });
+board.createItem({ item: "trap", top: 768, left: 336 });
+board.createItem({ item: "trap", top: 624, left: 528 });
+board.createItem({ item: "trap", top: 624, left: 240 });
+board.createItem({ item: "trap", top: 288, left: 528 });
+board.createItem({ item: "trap", top: 528, left: 816 });
+board.createItem({ item: "trap", top: 528, left: 384 });
+board.createItem({ item: "trap", top: 672, left: 768 });
+board.createItem({ item: "trap", top: 192, left: 768 });
+board.createItem({ item: "trap", top: 192, left: 288 });
+
+board.createEnemy({ top: 432, left: 720 });
+board.createEnemy({ top: 144, left: 240 });
+board.createEnemy({ top: 624, left: 144 });
+board.createEnemy({ top: 672, left: 144 });
+board.createEnemy({ top: 384, left: 720 });
+board.createEnemy({ top: 672, left: 480 });
+board.createEnemy({ top: 624, left: 624 });
+board.createEnemy({ top: 672, left: 384 });
+board.createEnemy({ top: 480, left: 432 });
+board.createEnemy({ top: 432, left: 336 });
+board.createEnemy({ top: 192, left: 816 });
+board.createEnemy({ top: 384, left: 528 });
+board.createEnemy({ top: 672, left: 528 });
+board.createEnemy({ top: 384, left: 288 });
+board.createEnemy({ top: 480, left: 672 });
+board.createEnemy({ top: 144, left: 336 });
+board.createEnemy({ top: 576, left: 720 });
+board.createEnemy({ top: 576, left: 96 });
+board.createEnemy({ top: 432, left: 720 });
+
+board.createItem({ item: "chest", top: TILE_SIZE * 2, left: TILE_SIZE * 18 });
 board.createHero({ top: TILE_SIZE * 16, left: TILE_SIZE * 2 });
-board.createEnemy({ top: TILE_SIZE * 4, left: TILE_SIZE * 2 });
