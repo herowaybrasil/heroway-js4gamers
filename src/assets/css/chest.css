@@ -5,7 +5,7 @@
   background-image: url('../images/chest.png');
   background-repeat: no-repeat;
   background-position: 0px 0px;
-  animation: chest-animation 1s steps(2) forwards;
+  /* animation: chest-animation 1s steps(2) forwards; */
 }
 
 @keyframes chest-animation {
